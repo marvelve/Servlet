@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author LENOVO
+ * @author Maricela Velasco
  */
 public class nuevoServlet extends HttpServlet {
 
@@ -38,7 +38,7 @@ public class nuevoServlet extends HttpServlet {
             out.println("<title>Servlet nuevoServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet mi nuevo Hola mundo " + msg+ "</h1>");
+            out.println("<h1>Servlet Recibe Datos " + msg+ "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +56,22 @@ public class nuevoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       processRequest(request, response, "mensaje");
+        
+        String nombreUsuario = request.getParameter("nombreCompleto");
+        String correoUsuario = request.getParameter("email");
+        String proyecto = request.getParameter("proyecto");
+        String ciudadUsuario = request.getParameter("ciudad");
+        String contrasena = request.getParameter("password");
+        
+        if (correoUsuario != null && !correoUsuario.isEmpty() && contrasena != null && !contrasena.isEmpty()){
+        processRequest(request, response, "registro exitoso");
+        }else {
+            processRequest(request, response, "ingresa tu correo electrónico y contraseña");
+        }
+        
+        
+        
+       
 
     }
 
