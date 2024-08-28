@@ -64,12 +64,22 @@ public class nuevoServlet extends HttpServlet {
         String contrasena = request.getParameter("password");
         
         if (correoUsuario != null && !correoUsuario.isEmpty() && contrasena != null && !contrasena.isEmpty()){
-        processRequest(request, response, "registro exitoso");
+        /*processRequest(request, response, "registro exitoso");
         }else {
             processRequest(request, response, "ingresa tu correo electrónico y contraseña");
+        }*/
+        
+        // Pasar los datos a la página JSP
+            request.setAttribute("mensaje", "Registro exitoso.");
+            request.setAttribute("nombreCompleto", nombreUsuario);
+            request.setAttribute("email", correoUsuario);
+            request.getRequestDispatcher("Resultado.jsp").forward(request, response);
+        } else {
+            // Redirigir a la página de error con un mensaje
+            request.setAttribute("mensaje", "Por favor, ingresa los campos correo electrónico y contraseña.");
+            request.getRequestDispatcher("Resultado.jsp").forward(request, response);
+        
         }
-        
-        
         
        
 
